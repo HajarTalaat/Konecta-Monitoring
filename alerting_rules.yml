@@ -1,0 +1,11 @@
+groups:
+  - name: container-alerts
+    rules:
+      - alert: ContainerDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Container {{ $labels.instance }} is down"
+          description: "The container on {{ $labels.instance }} is not running for the past 1 minute."
